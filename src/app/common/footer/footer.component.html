@@ -1,0 +1,195 @@
+<!-- Contact Start -->
+<div class="container-fluid contact py-5">
+  <div class="container py-5">
+    <div
+      class="text-center mx-auto pb-2 wow fadeInUp"
+      data-wow-delay="0.2s"
+      style="max-width: 800px"
+    >
+      <h2 class="text-primary">Contact Us</h2>
+     
+     
+    </div>
+    <div class="row g-5">
+      <div class="col-xl-6 position-relative  rounded-2" [ngStyle]="{'background-image': 'url(\'../assets/img/contactus.png\')'}">
+        <div class="wow fadeInUp" data-wow-delay="0.2s">
+          <div class=" bottom-0 end-0 m-3 w-full lg:p-11 p-5">
+            <div class="bg-white rounded-4 p-4 block">
+               <div class="row g-4">
+                <div class="col-md-2 d-flex justify-content-end">
+                  <i class="fas fa-map-marker-alt fa-2x __web-inspector-hide-shortcut__"></i>
+                </div>
+                <div class="col-md-10">
+                  Nashik,Maharashtra
+                </div>
+                <div class="col-md-2 d-flex justify-content-end">
+                  <i class="fas fa-envelope fa-2x"></i>
+                </div>
+                <div class="col-md-10">
+                  yrp@gmail.com
+                </div>
+                <div class="col-md-2 d-flex justify-content-end">
+                  <i class="fas fa-phone-alt fa-2x"></i>
+                </div>
+                <div class="col-md-10">
+                  +91-9657375881
+                </div>
+               </div>
+            </div>
+        </div>
+        </div>
+      </div>
+      <div class="col-xl-6 wow fadeInRight pl-0 rounded-2" data-wow-delay="0.2s">
+        <div
+          class="bg-light p-5 rounded h-100 wow fadeInUp"
+          data-wow-delay="0.2s"
+        >
+          <h4 class="text-primary pb-1">Register Now</h4>
+          <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row g-4">
+              <div class="col-12">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control border-0"
+                    id="name"
+                    placeholder="Your Name"
+                    formControlName="name"
+                    [ngClass]="{ 'is-invalid': submitted && f['name'].errors }"
+                    />
+                  <label for="name">Your Name</label>
+                  <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                    <div *ngIf="f['name'].errors['required']">Name is required</div>
+                  </div>
+                </div>
+                </div>
+              <!-- </div> -->
+              <div class="col-12">
+                <div class="form-floating">
+                  <input
+                    type="email"
+                    class="form-control border-0"
+                    id="email"
+                    placeholder="Your Email"
+                    formControlName="email"
+                    [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+                  />
+                  <label for="email">Your Email</label>
+                  <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                    <div *ngIf="f['email'].errors['required']">Email is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 ">
+                <div class="form-floating">
+                  <input
+                    type="phone"
+                    class="form-control border-0"
+                    id="phone"
+                    formControlName="mobileNo"
+                    placeholder="Mobile Number"
+                    [ngClass]="{ 'is-invalid': submitted && f['mobileNo'].errors }"
+                  />
+                  <label for="phone">Your Phone</label>
+                  <div *ngIf="submitted && f['mobileNo'].errors" class="invalid-feedback">
+                    <div *ngIf="f['mobileNo'].errors['required']">Mobile Number is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating">
+                  <select class="form-select border-0" id="course" aria-label=".form-select-lg example" formControlName="course"
+                  [ngClass]="{ 'is-invalid': submitted && f['course'].errors }"
+                  >
+                    <option value="">Select Course</option>
+                    <option  *ngFor="let data of courseArr" value={{data._id}}>{{data.name}}</option>     
+                  </select>
+                  <!-- <label for="course">Select Course</label> -->
+                  <div *ngIf="submitted && f['course'].errors" class="invalid-feedback">
+                    <div *ngIf="f['course'].errors['required']">Course is required</div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-lg-12 col-xl-6">
+                <div class="form-floating">
+                  <select class="form-select border-0" id="course" aria-label=".form-select-lg example" formControlName="course">
+                    <option selected>Select Course</option>
+                    <option value="1">One</option>     
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-12 col-xl-6">
+                <div class="form-floating">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Course</label>
+                  </div>
+                
+                </div>
+              </div> -->
+              <!-- <div  class="col-lg-12 col-xl-6">
+                <div class="form-floating">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">Intership</label>
+                  </div>
+                </div>
+              </div> -->
+              <div class="col-12">
+                <div class="form-floating">
+                  <textarea
+                    class="form-control border-0"
+                    placeholder="Leave a message here"
+                    id="message"
+                    style="height: 160px"
+                    formControlName="message"
+                    [ngClass]="{ 'is-invalid': submitted && f['message'].errors }"
+                  ></textarea>
+                  <label for="message">Message</label>
+                  <div *ngIf="submitted && f['message'].errors" class="invalid-feedback">
+                    <div *ngIf="f['message'].errors['required']">Message is required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-primary w-100 py-3">Register Now</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contact End -->
+
+<!-- Copyright Start -->
+<div class="container-fluid copyright py-4">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-md-6 text-center text-md-start mb-md-0">
+        <span class="text-body"
+          ><a href="#" class="border-bottom text-white"
+            ><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a
+          >, All right reserved.</span
+        >
+      </div>
+      <div class="col-md-6 text-center text-md-end text-body">
+        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+        Designed By
+        <a class="border-bottom text-white" href="https://htmlcodex.com"
+          >HTML Codex</a
+        >
+        Distributed By
+        <a class="border-bottom text-white" href="https://themewagon.com"
+          >ThemeWagon</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Copyright End -->

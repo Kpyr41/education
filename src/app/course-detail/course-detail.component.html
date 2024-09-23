@@ -1,0 +1,102 @@
+ <!-- Navbar & Hero Start -->
+ <div class="container-fluid position-relative p-0">
+   <app-header></app-header>
+
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{courseName}}</h4>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+                <li class="breadcrumb-item"><a routerLink="/courses">Course</a></li>
+                <li class="breadcrumb-item active text-primary">{{courseName}}</li>
+            </ol>    
+        </div>
+    </div>
+    <!-- Header End -->
+</div>
+<!-- Navbar & Hero End -->
+
+
+<!-- Offer Start -->
+<div class="container-fluid offer-section py-5">
+    <div class="container py-5">
+      
+        <div class="row g-5 align-items-center">
+            <!-- <div class="col-xl-5 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="nav nav-pills bg-light rounded p-5">
+                    <a class="accordion-link p-4 active mb-4" data-bs-toggle="pill" href="#collapseOne">
+                        <h5 class="mb-0">Lending money for investment of your new projects</h5>
+                    </a>
+                    <a class="accordion-link p-4 mb-4" data-bs-toggle="pill" href="#collapseTwo">
+                        <h5 class="mb-0">Lending money for investment of your new projects</h5>
+                    </a>
+                    <a class="accordion-link p-4 mb-4" data-bs-toggle="pill" href="#collapseThree">
+                        <h5 class="mb-0">Mobile payment is more flexible and easy for all investors</h5>
+                    </a>
+                    <a class="accordion-link p-4 mb-0" data-bs-toggle="pill" href="#collapseFour">
+                        <h5 class="mb-0">all transaction is kept free for the member of pro traders</h5>
+                    </a>
+                </div>
+            </div> -->
+            <div class="col-xl-12 wow fadeInRight" data-wow-delay="0.4s">
+                <div class="tab-content">
+                    <div id="collapseOne" class="tab-pane fade show p-0 active">
+                        <div class="row g-4">
+                            <div class="col-md-6 p-5 pt-0">
+                                <img src={{courseArr.image}} class="  w-100 rounded" alt="">
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="display-5 mb-2">{{courseArr.title}}</h4>
+                                <p class="mb-4">{{courseArr.description}}
+                                </p>
+                                <a class="btn btn-primary rounded-pill py-2 px-4" (click)="scroll()">Join Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseTwo" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-7">
+                                <img src="img/offer-2.jpg" class="img-fluid w-100 rounded" alt="">
+                            </div>
+                            <div class="col-md-5">
+                                <h1 class="display-5 mb-4">The stock market provides a venue...</h1>
+                                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis amet sequi molestiae tenetur eum mollitia, blanditiis, magnam illo magni error dolore unde perspiciatis tempore et totam corrupti dignissimos aut praesentium?
+                                </p>
+                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseThree" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-7">
+                                <img src="img/offer-3.jpg" class="img-fluid w-100 rounded" alt="">
+                            </div>
+                            <div class="col-md-5">
+                                <h1 class="display-5 mb-4">The stock market provides a venue...</h1>
+                                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis amet sequi molestiae tenetur eum mollitia, blanditiis, magnam illo magni error dolore unde perspiciatis tempore et totam corrupti dignissimos aut praesentium?
+                                </p>
+                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseFour" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-7">
+                                <img src="img/offer-4.jpg" class="img-fluid w-100 rounded" alt="">
+                            </div>
+                            <div class="col-md-5">
+                                <h1 class="display-5 mb-4">The stock market provides a venue...</h1>
+                                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis amet sequi molestiae tenetur eum mollitia, blanditiis, magnam illo magni error dolore unde perspiciatis tempore et totam corrupti dignissimos aut praesentium?
+                                </p>
+                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Offer End -->
+ <app-footer></app-footer>
