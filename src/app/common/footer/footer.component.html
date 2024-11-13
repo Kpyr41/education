@@ -26,13 +26,13 @@
                   <i class="fas fa-envelope fa-2x"></i>
                 </div>
                 <div class="col-md-10">
-                  yrp@gmail.com
+                  <a href="mailto:info@kpyr.in" style="text-decoration: none; color: #000;">info@kpyr.in</a> 
                 </div>
                 <div class="col-md-2 d-flex justify-content-end">
                   <i class="fas fa-phone-alt fa-2x"></i>
                 </div>
                 <div class="col-md-10">
-                  +91-9657375881
+                  <a href="tel:+918408855955" style="text-decoration: none; color: #000;">+91 8408855955</a> 
                 </div>
                </div>
             </div>
@@ -77,13 +77,14 @@
                   <label for="email">Your Email</label>
                   <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
                     <div *ngIf="f['email'].errors['required']">Email is required</div>
+                    <div *ngIf="f['email'].errors['pattern']">Please enter a valid email address</div>
                   </div>
                 </div>
               </div>
-              <div class="col-12 ">
+              <div class="col-12">
                 <div class="form-floating">
                   <input
-                    type="phone"
+                    type="tel"
                     class="form-control border-0"
                     id="phone"
                     formControlName="mobileNo"
@@ -93,6 +94,7 @@
                   <label for="phone">Your Phone</label>
                   <div *ngIf="submitted && f['mobileNo'].errors" class="invalid-feedback">
                     <div *ngIf="f['mobileNo'].errors['required']">Mobile Number is required</div>
+                    <div *ngIf="f['mobileNo'].errors['pattern']">Please enter a valid mobile number</div>
                   </div>
                 </div>
               </div>
@@ -154,7 +156,11 @@
                 </div>
               </div>
               <div class="col-12">
-                <button class="btn btn-primary w-100 py-3">Register Now</button>
+                <button class="btn btn-primary w-100 py-3" [disabled]="loading">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  <span *ngIf="!loading">Register Now</span>
+                </button>
+                <!-- <button class="btn btn-primary w-100 py-3">Register Now</button> -->
               </div>
             </div>
           </form>
@@ -171,23 +177,23 @@
     <div class="row g-4 align-items-center">
       <div class="col-md-6 text-center text-md-start mb-md-0">
         <span class="text-body"
-          ><a href="#" class="border-bottom text-white"
-            ><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a
-          >, All right reserved.</span
+          ><a href="https://edu.kpyr.in/" class="border-bottom text-white"
+            ><i class="fas fa-copyright text-light me-2"></i>©{{year}} KPYR Technologies, All Rights Reserved.</a
+          ></span
         >
       </div>
       <div class="col-md-6 text-center text-md-end text-body">
         <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
         <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
         <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-        Designed By
-        <a class="border-bottom text-white" href="https://htmlcodex.com"
-          >HTML Codex</a
-        >
-        Distributed By
+      
+        <!-- <a class="border-bottom text-white" href="https://htmlcodex.com"
+          >HTML </a
+        > -->
+        <!-- Distributed By
         <a class="border-bottom text-white" href="https://themewagon.com"
-          >ThemeWagon</a
-        >
+          >ThemeWagon</a -->
+        <!-- > -->
       </div>
     </div>
   </div>

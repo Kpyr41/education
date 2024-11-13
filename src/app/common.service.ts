@@ -60,6 +60,8 @@ export class CommonService {
   }
   register(Contact: Contact): Observable<Contact> {
   const  url = `${this.apiUrl}${'contact'}`;
+  console.log(url,"awSzawa");
+  
 
     return this.http.post<Contact>(url, Contact);
   }

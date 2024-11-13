@@ -1,5 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { CommonService } from '../common.service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
+import { ScrollService } from '../scroll.service';
 
 declare var $: any; // Declare $ for TypeScript
 
@@ -15,8 +18,11 @@ export class HomeComponent implements AfterViewInit {
   // offset = 0;
   // showRecords = 10;
   // loadMorebtn:boolean=true
-  constructor(private cs: CommonService) {}
+  constructor(private cs: CommonService,private scrollService: ScrollService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit(): void {
+    this.scrollService.scrollToSection$.subscribe((sectionId: string) => {
+      this.scrollToSection(sectionId);
+    });
     this.getCourseList();
     this.getReviewList()
   }
@@ -111,6 +117,7 @@ export class HomeComponent implements AfterViewInit {
   };
 
   ngAfterViewInit() {
+    // this.scrollToSectionFromQuery();
     // Initialize Owl Carousel after view initialization
     $('.header-carousel').owlCarousel({
       loop: true,
@@ -166,5 +173,27 @@ export class HomeComponent implements AfterViewInit {
       .querySelector('.contact')
       ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
    
+  }
+  scrolltotop(){
+    document
+    .querySelector('.slider')
+    ?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+ 
+
+  // private scrollToSectionFromQuery() {
+  //   const sectionId = this.route.snapshot.queryParams['section'];
+  //   if (sectionId) {
+  //     const element = document.getElementById(sectionId);
+  //     if (element) {
+  //       element.scrollIntoView({ behavior: 'smooth' });
+  //     }
+  //   }
+  // }
+  private scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

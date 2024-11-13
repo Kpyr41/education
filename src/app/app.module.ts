@@ -10,6 +10,8 @@ import { CourseListComponent } from './course-list/course-list.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,9 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     HttpClientModule,
     SlickCarouselModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

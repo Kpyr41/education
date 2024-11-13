@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonService } from 'src/app/common.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-footer',
@@ -10,33 +11,26 @@ import { CommonService } from 'src/app/common.service';
 export class FooterComponent {
   courseArr: any[] = [];
 
-  registerForm: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    mobileNo: new FormControl(''),
-    email: new FormControl(''),
-    course: new FormControl(''),
-    message: new FormControl(''),
+  registerForm: FormGroup= new FormGroup({
+    name: new FormControl('',Validators.required),
+    mobileNo: new FormControl('',[Validators.required, Validators.pattern(/^[0-9]{10}$/)]),
+    email: new FormControl('', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)]),
+    course: new FormControl('',Validators.required),
+    message: new FormControl('',Validators.required),
   });
   submitted = false;
+  loading = false;
+
 
   constructor(private formBuilder: FormBuilder,
-    private cs:CommonService
-  ) {}
-
-  ngOnInit(): void {
-    this.getCourseList()
-    this.registerForm = this.formBuilder.group(
+    private cs:CommonService,
+    private toastr: ToastrService
+  ) {
+     this.registerForm = this.formBuilder.group(
       {
         name: ['', Validators.required],
-        mobileNo: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(10),
-            Validators.maxLength(10),
-          ],
-        ],
-        email: ['', [Validators.required, Validators.email]],
+        email: ['', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)]],
+        mobileNo: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
         course: [
           '',
           [
@@ -50,43 +44,68 @@ export class FooterComponent {
      
     );
   }
+  year: number = new Date().getFullYear();
+  ngOnInit(): void {
+    this.getCourseList()
+    this.registerForm = this.formBuilder.group(
+      {
+        name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)]],
+        mobileNo: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+        course: [
+          '',
+          [
+            Validators.required,
+           
+          ],
+        ],
+        message: ['', Validators.required],
+        // acceptTerms: [false, Validators.requiredTrue],
+      },
+     
+    );
+   
+  }
 
   get f(): { [key: string]: AbstractControl } {
     return this.registerForm.controls;
   }
 
   onSubmit(): void {
-    this.submitted = true;
-
+    this.submitted = true; // Set to true to trigger validation feedback in the template
+  
     if (this.registerForm.invalid) {
-      let formValues = this.registerForm.value
-      console.log(formValues,"s");
-      
-      this.cs.register(formValues).subscribe(
-        (response) => {
-          console.log('Form submitted successfully', response);
-          // Optionally reset the form
-          this.registerForm.reset();
-          this.submitted = false;
-        },
-        (error) => {
-          console.log('Error occurred:', error);
-        }
-      );
+      return; // If the form is invalid, stop further execution
     }
-
-    
-
-    console.log(JSON.stringify(this.registerForm.value, null, 2));
+  
+    // Proceed if the form is valid
+    this.loading = true; // Show the loading spinner
+    let formValues = this.registerForm.value;
+  
+    this.cs.register(formValues).subscribe(
+      (response) => {
+        this.loading = false; // Hide the loading spinner
+        this.toastr.success("Thank you for contacting us! We'll get back to you soon.");
+        this.registerForm.reset(); // Reset the form
+        this.submitted = false; // Reset the submitted state
+      },
+      (error) => {
+        this.loading = false; // Hide the loading spinner
+        console.log('Error occurred:', error);
+        this.toastr.error("Something went wrong. Please try again later.");
+      }
+    );
   }
-  getCourseList() {
-    
-    this.cs.getCoursesList().subscribe((data) => {
-      this.courseArr = data;
-      console.log(this.courseArr,"as");
-      
+  getCourseList(): void {
+    this.cs.getCoursesList().subscribe({
+      next: (response: any) => {
+        
+        this.courseArr = response.courses
+        console.log(response.courses,"corse 1");
+        
+       
+      },
     });
-
   
   }
 

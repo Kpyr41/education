@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
     <a href="" class="navbar-brand p-0">
-      <img src="../../../assets/img/logo.png">
+      <img height="150" width="150" src="../../../assets/img/logo.png">
       <!-- <h1 class="text-primary">
         <i class="fas fa-search-dollar me-3"></i>
       </h1> -->
@@ -17,14 +17,19 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="navbar-nav ms-auto py-0">
         <a routerLink="/" class="nav-item nav-link active">Home</a>
-        <a (click)="scrollAbout()" class="nav-item nav-link">About</a>
-        <a (click)="scrollCourse()" class="nav-item nav-link">Courses</a>
-        <a (click)="scrollTestimonial()" class="nav-item nav-link">Testimonial</a>
+        <!-- (click)="scrollAbout()"  -->
+        <a (click)="navigateToSection('about')" class="nav-item nav-link">About</a>
+        <!-- (click)="scrollCourse()" -->
+        <a (click)="navigateToSection('course')" class="nav-item nav-link">Courses</a>
+        <!-- (click)="scrollTestimonial()"  -->
+        <a (click)="navigateToSection('testimonial')" class="nav-item nav-link">Testimonial</a>
      
         <!-- <a href="contact.html" class="nav-item nav-link">Contact Us</a> -->
       </div>
+      <!-- (click)="scroll()" -->
       <a
-      (click)="scroll()"
+      
+      (click)="navigateToSection('contact')"
         class="btn btn-primary rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0"
         >Get Started</a
       >
